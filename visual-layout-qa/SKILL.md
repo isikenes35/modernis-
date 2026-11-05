@@ -37,9 +37,9 @@ Follow this exact sequence for the provided URL. Do not skip breakpoints.
 
 1. Open the URL in a single browser session (initial height: 900px).
 2. Iterate through all 8 breakpoints sequentially:
-   - 320px  | Small phone (iPhone SE)
-   - 375px  | Standard phone (iPhone 14)
-   - 768px  | Tablet portrait (iPad)
+   - 320px | Small phone (iPhone SE)
+   - 375px | Standard phone (iPhone 14)
+   - 768px | Tablet portrait (iPad)
    - 1024px | Tablet landscape / small laptop
    - 1280px | Laptop
    - 1440px | Desktop
@@ -49,7 +49,7 @@ Follow this exact sequence for the provided URL. Do not skip breakpoints.
    - **Resize** the viewport to the target width.
    - **Wait** exactly 2 seconds for CSS reflows and layout transitions to complete.
    - **Screenshot** the above-fold area.
-   - **Scroll and screenshot** the below-fold content. *(Ignore visual glitches caused by sticky/fixed navigation bars or floating elements during the scroll).*
+   - **Scroll and screenshot** the below-fold content. _(Ignore visual glitches caused by sticky/fixed navigation bars or floating elements during the scroll)._
    - **Run** the "8-Point Layout Check Matrix" against the visual evidence.
 4. **Compile a concise summary `.md` report** of all findings BEFORE writing any code. Group issues by specific breakpoints or severity. Do not clutter the report with tests that passed.
 
@@ -68,19 +68,20 @@ Do NOT start fixing until Phase 1 is fully complete and documented.
 **CRITICAL:** During analysis, do NOT use DOM class names, tags, or code-level selectors to describe elements.
 
 Use clear, visual, and positional descriptions.
-- ✅ *Good:* "Sağ üst köşedeki dil değiştirme menüsü" (Top right language switcher menu)
-- ✅ *Good:* "Header'ın altındaki 3D makine modeli sunum alanı" (3D machine model presentation area below the header)
-- ❌ *Bad:* "The div with class .nav-wrapper"
-- ❌ *Bad:* "The ul element inside the header"
+
+- ✅ _Good:_ "Sağ üst köşedeki dil değiştirme menüsü" (Top right language switcher menu)
+- ✅ _Good:_ "Header'ın altındaki 3D makine modeli sunum alanı" (3D machine model presentation area below the header)
+- ❌ _Bad:_ "The div with class .nav-wrapper"
+- ❌ _Bad:_ "The ul element inside the header"
 
 ## Common Mistakes
 
-| Mistake | Fix |
-|---|---|
-| Fixing issues immediately as they are found | Complete the entire Phase 1 analysis first to understand the full scope. |
-| Using DOM selectors for bug reports | Use visual/positional descriptions (Component Description Rule). |
-| Skipping breakpoints | Test all 8 breakpoints to catch subtle CSS transition failures. |
-| Not verifying fixes | Always re-test the breakpoint after applying a fix to ensure no regressions. |
+| Mistake                                     | Fix                                                                          |
+| ------------------------------------------- | ---------------------------------------------------------------------------- |
+| Fixing issues immediately as they are found | Complete the entire Phase 1 analysis first to understand the full scope.     |
+| Using DOM selectors for bug reports         | Use visual/positional descriptions (Component Description Rule).             |
+| Skipping breakpoints                        | Test all 8 breakpoints to catch subtle CSS transition failures.              |
+| Not verifying fixes                         | Always re-test the breakpoint after applying a fix to ensure no regressions. |
 
 ## Red Flags - STOP and Start Over
 
