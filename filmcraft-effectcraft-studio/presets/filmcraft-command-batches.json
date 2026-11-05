@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "description": "Batch command definitions for FilmCraft CLI (--bridge 127.0.0.1:9876 / headless) implementing advanced cinematic workflows",
+  "batches": [
+    {
+      "id": "fc_j_cut_dialogue_lead",
+      "name": "J-Cut Audio Lead-In (Split Edit)",
+      "description": "Transitions audio 18 frames before the video cut, pulling the viewer's attention into the next scene before the visual change.",
+      "commands": [
+        {
+          "id": "timeline.place",
+          "params": {
+            "item": "$incoming_media_item",
+            "track": "A1",
+            "time": 254016000000,
+            "sourceIn": 0,
+            "duration": 508032000000,
+            "video": false,
+            "audio": true
+          }
+        },
+        {
+          "id": "timeline.place",
+          "params": {
+            "item": "$incoming_media_item",
+            "track": "V1",
+            "time": 269256960000,
+            "sourceIn": 15240960000,
+            "duration": 492791040000,
+            "video": true,
+            "audio": false
+          }
+        },
+        {
+          "id": "sequence.applyAudioTransition",
+          "params": {
+            "clip": "$incoming_audio_clip",
+            "effect": "constant_power",
+            "frames": 18,
+            "edge": "in"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fc_screen_studio_auto_zoom",
+      "name": "Screen Studio Automated UI Zoom & Focus Track",
+      "description": "Smoothly scales 1080p UI recording to 165% centered on an active button/dialogue interaction, with continuousBezier easing.",
+      "commands": [
+        {
+          "id": "effects.apply",
+          "params": {
+            "clips": ["$ui_clip"],
+            "effect": "motion"
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "scale",
+            "time": 0,
+            "keyframe": true,
+            "value": 100.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "scale",
+            "time": 101606400000,
+            "keyframe": true,
+            "value": 165.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "position",
+            "time": 0,
+            "keyframe": true,
+            "value": [960.0, 540.0]
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "position",
+            "time": 101606400000,
+            "keyframe": true,
+            "value": [720.0, 410.0]
+          }
+        },
+        {
+          "id": "effects.setInterpolation",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "scale",
+            "mediaTime": 0,
+            "interpolation": "continuousBezier"
+          }
+        },
+        {
+          "id": "effects.setInterpolation",
+          "params": {
+            "clip": "$ui_clip",
+            "effect": "motion",
+            "param": "position",
+            "mediaTime": 0,
+            "interpolation": "continuousBezier"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fc_lumetri_cinematic_s_curve",
+      "name": "32-bit Lumetri Broadcast Grade & Soft Vignette",
+      "description": "Applies broadcast Rec.709 color balance, gentle S-curve luma contrast, controlled highlight rollback, and optical lens vignette.",
+      "commands": [
+        {
+          "id": "effects.apply",
+          "params": {
+            "clips": ["$target_clip"],
+            "effect": "lumetri"
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "basic_on",
+            "value": true
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "temperature",
+            "value": 4.5
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "contrast",
+            "value": 15.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "highlights",
+            "value": -18.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "shadows",
+            "value": 6.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "saturation",
+            "value": 106.0
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "curves_on",
+            "value": true
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "curve_luma",
+            "value": [
+              [0.0, 0.02],
+              [0.25, 0.22],
+              [0.75, 0.81],
+              [1.0, 0.98]
+            ]
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "vignette_on",
+            "value": true
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "vignette_amount",
+            "value": -0.42
+          }
+        },
+        {
+          "id": "effects.setParam",
+          "params": {
+            "clip": "$target_clip",
+            "effect": "lumetri",
+            "param": "vignette_feather",
+            "value": 75.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "fc_ebu_r128_ducking_setup",
+      "name": "EBU R128 Dialogue-Driven Auto-Ducking Strip Setup",
+      "description": "Configures Essential Sound tags and mixer strips so background score automatically attenuates by 11.5 dB during voiceover passages.",
+      "commands": [
+        {
+          "id": "essentialSound.setType",
+          "params": {
+            "clips": ["$vo_clips"],
+            "type": "dialogue"
+          }
+        },
+        {
+          "id": "essentialSound.setType",
+          "params": {
+            "clips": ["$music_clips"],
+            "type": "music"
+          }
+        },
+        {
+          "id": "mixer.setStrip",
+          "params": {
+            "strip": "A1",
+            "name": "Voiceover Primary",
+            "volumeDb": 0.0
+          }
+        },
+        {
+          "id": "mixer.setStrip",
+          "params": {
+            "strip": "A2",
+            "name": "Music Bed (Auto-Ducked)",
+            "volumeDb": -12.0
+          }
+        },
+        {
+          "id": "mixer.setStrip",
+          "params": {
+            "strip": "A3",
+            "name": "SFX & Foley",
+            "volumeDb": -2.5
+          }
+        }
+      ]
+    }
+  ]
+}

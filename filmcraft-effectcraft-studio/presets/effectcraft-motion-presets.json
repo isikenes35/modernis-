@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "description": "Production-ready EffectCraft motion presets (.ecpreset / command JSON) for high-end SaaS, commercial, and kinetic motion graphics",
+  "presets": [
+    {
+      "id": "ec_snap_zoom_impact",
+      "name": "Snap Zoom with Spatial Twitch",
+      "category": "Camera & Emphasis",
+      "description": "Dynamic snap punch from 100% to 138% scale using snapSettle ease, with subtle 0.8 degree rotational micro-twitch and directional motion blur.",
+      "durationFrames": 14,
+      "commands": [
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/scale",
+            "time": 0.0,
+            "value": [100.0, 100.0, 100.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/scale",
+            "time": 0.233,
+            "value": [138.0, 138.0, 100.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/rotation",
+            "time": 0.0,
+            "value": 0.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/rotation",
+            "time": 0.066,
+            "value": 0.85,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/rotation",
+            "time": 0.233,
+            "value": 0.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "keys.setTemporalEase",
+          "params": {
+            "path": "transform/scale",
+            "keyIndex": 1,
+            "outInfluence": 85.0,
+            "outSpeed": 0.0,
+            "inInfluence": 15.0,
+            "inSpeed": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "ec_whip_pan_seam",
+      "name": "Cinematic Whip Pan Transition",
+      "category": "Transitions",
+      "description": "High-velocity lateral camera pan using whip ease, paired with dynamic directional blur at the cut point.",
+      "durationFrames": 12,
+      "commands": [
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/position",
+            "time": 0.0,
+            "value": [960.0, 540.0, 0.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/position",
+            "time": 0.200,
+            "value": [-960.0, 540.0, 0.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "add_effect",
+          "params": {
+            "effect": "ADBE Directional Blur",
+            "values": {
+              "Direction": 90.0,
+              "Blurriness": 65.0
+            }
+          }
+        },
+        {
+          "command": "keys.setTemporalEase",
+          "params": {
+            "path": "transform/position",
+            "keyIndex": 1,
+            "outInfluence": 90.0,
+            "outSpeed": 0.0,
+            "inInfluence": 10.0,
+            "inSpeed": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "ec_3d_card_spatial_tilt",
+      "name": "3D Floating Glass Card Tilt",
+      "category": "3D Product Presentation",
+      "description": "3D Layer rotation and Z-space entry from angle to face-on, with softRaytraced shadow and depth-of-field settle.",
+      "durationFrames": 24,
+      "commands": [
+        {
+          "command": "layer.set3D",
+          "params": { "enable": true }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/xRotation",
+            "time": 0.0,
+            "value": 18.5,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/yRotation",
+            "time": 0.0,
+            "value": -24.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/position",
+            "time": 0.0,
+            "value": [960.0, 620.0, -350.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/xRotation",
+            "time": 0.400,
+            "value": 0.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/yRotation",
+            "time": 0.400,
+            "value": 0.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "transform/position",
+            "time": 0.400,
+            "value": [960.0, 540.0, 0.0],
+            "keyframe": true
+          }
+        },
+        {
+          "command": "keys.setTemporalEase",
+          "params": {
+            "path": "transform/position",
+            "keyIndex": 1,
+            "outInfluence": 72.0,
+            "outSpeed": 0.0,
+            "inInfluence": 28.0,
+            "inSpeed": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "ec_kinetic_text_reveal",
+      "name": "Kinetic Text Range Stagger",
+      "category": "Kinetic Typography",
+      "description": "Per-character staggered reveal with Y-offset drop and letter-spacing expansion using Range Selector.",
+      "durationFrames": 18,
+      "commands": [
+        {
+          "command": "text.addAnimator",
+          "params": { "name": "KineticReveal" }
+        },
+        {
+          "command": "text.addSelector",
+          "params": { "animator": "KineticReveal", "type": "range", "units": "percentage" }
+        },
+        {
+          "command": "prop.set",
+          "params": { "path": "text/animators/KineticReveal/properties/position", "value": [0.0, 48.0] }
+        },
+        {
+          "command": "prop.set",
+          "params": { "path": "text/animators/KineticReveal/properties/opacity", "value": 0.0 }
+        },
+        {
+          "command": "prop.set",
+          "params": { "path": "text/animators/KineticReveal/properties/tracking", "value": 25.0 }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "text/animators/KineticReveal/selectors/Range/start",
+            "time": 0.0,
+            "value": 0.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "prop.set",
+          "params": {
+            "path": "text/animators/KineticReveal/selectors/Range/start",
+            "time": 0.300,
+            "value": 100.0,
+            "keyframe": true
+          }
+        },
+        {
+          "command": "keys.setTemporalEase",
+          "params": {
+            "path": "text/animators/KineticReveal/selectors/Range/start",
+            "keyIndex": 1,
+            "outInfluence": 70.0,
+            "outSpeed": 0.0,
+            "inInfluence": 30.0,
+            "inSpeed": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "ec_inertial_overshoot_expression",
+      "name": "Inertial Bounce & Damped Decay Expression",
+      "category": "Expressions",
+      "description": "Physical harmonic oscillator expression applied to position, scale, or rotation to automatically create organic post-keyframe overshoot.",
+      "expression": "n = 0; if (numKeys > 0) { n = nearestKey(time).index; if (key(n).time > time) n--; } if (n > 0) { t = time - key(n).time; amp = 0.05; freq = 4.0; decay = 5.0; v = velocityAtTime(key(n).time - 0.001); value + v * amp * Math.sin(freq * t * 2 * Math.PI) / Math.exp(decay * t); } else { value; }"
+    }
+  ]
+}
